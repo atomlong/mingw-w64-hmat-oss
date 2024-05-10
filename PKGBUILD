@@ -13,6 +13,11 @@ sha256sums=('f45e71d1c4de157071adce36642239aa8e2b63e08caa85f59cf656519993ace1')
 
 _architectures="i686-w64-mingw32 x86_64-w64-mingw32"
 
+prepare() {
+  cd hmat-oss-$pkgver
+  sed -i "s|-Werror||g" CMakeLists.txt
+}
+
 build() {
   cd "$srcdir/hmat-oss-${pkgver}"
   for _arch in ${_architectures}; do
